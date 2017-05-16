@@ -1,7 +1,7 @@
 package main
 
 import (
-    "fmt"
+    "log"
     "os"
     "os/signal"
     "time"
@@ -32,12 +32,12 @@ func SysSWTest() {
 
 func main(){
     // Init syssleepwake package
-    fmt.Println("Hello, SysSleepWake")
+    log.Println("Hello, SysSleepWake")
     SysSW.Init()
     go SysSWTest()
 
     // Init volumectroller package
-    fmt.Println("Hello, VolumeController")
+    log.Println("Hello, VolumeController")
     VolCtrller.Init()
 
     signalChanel := make(chan os.Signal, 1)
