@@ -4,15 +4,36 @@ import (
     "fmt"
     "os"
     "os/signal"
+    "time"
     VolCtrller  "smartconn.cc/sibolwolf/volumecontroller"
     SysSw       "smartconn.cc/sibolwolf/syssleepwake"
 )
+func SysSWTest() {
+    // Nothing to do
+    SysSW.UpdateLockStatus("audiolock", 0)
+    time.Sleep(time.Second * 5)
+    SysSW.UpdateLockStatus("storysynclock", 1)
+    time.Sleep(time.Second * 5)
+    SysSW.UpdateLockStatus("storysynclock", 0)
+    time.Sleep(time.Second * 1)
+    SysSW.UpdateLockStatus("storysynclock", 1)
+    time.Sleep(time.Second * 1)
+    SysSW.UpdateLockStatus("storydecompresslock", 1)
+    time.Sleep(time.Second * 5)
+    SysSW.UpdateLockStatus("storysynclock", 0)
+    time.Sleep(time.Second * 5)
+    SysSW.UpdateLockStatus("storydecompresslock", 0)
+    SysSW.UpdateLockStatus("storydecompresslock", 1)
+    SysSW.UpdateLockStatus("storydecompresslock", 0)
+    SysSW.UpdateLockStatus("storydecompresslock", 1)
+    SysSW.UpdateLockStatus("storydecompresslock", 0)
+}
 
 func main(){
     // Init syssleepwake package
     fmt.Println("Hello, SysSleepWake")
     SysSW.Init()
-    SysSw.testLockStatus2()
+    go SysSWTest()
 
     // Init volumectroller package
     fmt.Println("Hello, VolumeController")
