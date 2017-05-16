@@ -6,8 +6,9 @@ import (
     "os/signal"
     "time"
     VolCtrller  "smartconn.cc/sibolwolf/volumecontroller"
-    SysSw       "smartconn.cc/sibolwolf/syssleepwake"
+    SysSW       "smartconn.cc/sibolwolf/syssleepwake"
 )
+
 func SysSWTest() {
     // Nothing to do
     SysSW.UpdateLockStatus("audiolock", 0)
