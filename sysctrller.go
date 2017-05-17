@@ -32,23 +32,10 @@ func SysLockUpdate(lockname string, value int) {
 
 func SysSWTest() {
     // Nothing to do
+    SysLockUpdate("audiolock", 1)
+    time.Sleep(time.Second * 5)
     SysLockUpdate("audiolock", 0)
-    time.Sleep(time.Second * 5)
-    SysLockUpdate("storysynclock", 1)
-    time.Sleep(time.Second * 5)
-    SysLockUpdate("storysynclock", 0)
-    time.Sleep(time.Second * 1)
-    SysLockUpdate("storysynclock", 1)
-    time.Sleep(time.Second * 1)
-    SysLockUpdate("storydecompresslock", 1)
-    time.Sleep(time.Second * 5)
-    SysLockUpdate("storysynclock", 0)
-    time.Sleep(time.Second * 5)
-    SysLockUpdate("storydecompresslock", 0)
-    SysLockUpdate("storydecompresslock", 1)
-    SysLockUpdate("storydecompresslock", 0)
-    SysLockUpdate("storydecompresslock", 1)
-    SysLockUpdate("storydecompresslock", 0)
+
 }
 
 func main() {
