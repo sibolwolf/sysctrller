@@ -7,16 +7,22 @@ import (
     "time"
     VolCtrller  "smartconn.cc/sibolwolf/volumecontroller"
     SysSW       "smartconn.cc/sibolwolf/syssleepwake"
+    BatteryM    "smartconn.cc/sibolwolf/batterymonitor"
 )
 
 func Init() {
+    // Init volumectroller package
+    log.Println("Hello, Init VolumeController ...")
+    VolCtrller.Init()
+
     // Init syssleepwake package
     log.Println("Hello, Init SysSleepWake ...")
     SysSW.Init()
 
-    // Init volumectroller package
-    log.Println("Hello, Init VolumeController ...")
-    VolCtrller.Init()
+    // Init batterymonitor package which must after syssleepwake
+    // Batterymonitor is running as a daemon program
+    log.Println("Hello, Init batterymonitor ...")
+    go BatteryM.Init()
 }
 
 func SysLockUpdate(lockname string, value int) {
